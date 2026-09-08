@@ -3,6 +3,8 @@
 - [Learning Oracle Database 19c: PL/SQL](#learning-oracle-database-19c-plsql)
   - [1-Introduction](#1-introduction)
   - [2-PL/SQL Elements](#2-plsql-elements)
+  - [3-Lab Environments](#3-lab-environments)
+
 
 --- 
 
@@ -57,3 +59,7 @@
 - Automate repetitive tasks and enforce business rules consistently through stored procedures and functions.
 - Exception handling in PL/SQL helps manage errors gracefully, making your database applications more robust.
 - It supports dynamic SQL execution and tight integration with SQL, improving flexibility and performance.
+
+## 3-Lab Environments
+
+Oracle 19c SQL Worksheet: https://freesql.com/
