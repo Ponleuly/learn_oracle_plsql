@@ -186,14 +186,32 @@ FROM hr.employees
 ORDER BY department_id;
 ```
 
+```sql
+-- Create new tables for own schema from oracle freesql.com lab
+CREATE TABLE dept AS SELECT * FROM  hr.departments;
+CREATE TABLE employees AS SELECT * FROM  hr.employees;
+/
 
+CREATE OR REPLACE FUNCTION show_dept_name (
+    dept_id NUMBER
+) RETURN dept.department_name%TYPE IS
+    v_dept_name dept.department_name%TYPE;
+BEGIN
+    SELECT
+        department_name
+    INTO v_dept_name
+    FROM
+        dept
+    WHERE
+        department_id = dept_id;
 
-CREATE or replace FUNCTION show_dept_name (dept_id NUMBER) 
-RETURN varchar IS
-    dept_name varchar(100);
-BEGIN 
-    SELECT department_name FROM hr.departments
-    WHERE department_id = dept_id;
-    return dept_name;
+    RETURN v_dept_name;
 END;
+/
+
+SELECT a.first_name, a.department_id, show_dept_name(a.department_id)
+FROM employees a
+ORDER BY a.department_id;
+
+```
 
