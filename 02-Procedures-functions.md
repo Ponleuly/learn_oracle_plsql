@@ -188,3 +188,12 @@ ORDER BY department_id;
 
 
 
+CREATE or replace FUNCTION show_dept_name (dept_id NUMBER) 
+RETURN varchar IS
+    dept_name varchar(100);
+BEGIN 
+    SELECT department_name FROM hr.departments
+    WHERE department_id = dept_id;
+    return dept_name;
+END;
+
