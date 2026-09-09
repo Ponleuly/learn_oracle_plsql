@@ -1,4 +1,22 @@
 # Procedures and Functions
+- [Procedures and Functions](#procedures-and-functions)
+  - [1-Built-in Functions](#1-built-in-functions)
+    - [**Single-Row Functions**](#single-row-functions)
+    - [1. Character Functions](#1-character-functions)
+    - [2. Numeric Functions](#2-numeric-functions)
+    - [3. Datetime Functions](#3-datetime-functions)
+    - [4. Conversion Functions](#4-conversion-functions)
+    - [5. General](#5-general)
+  - [2-Built-in PL/SQL Procedures](#2-built-in-plsql-procedures)
+    - [Common Built-in PL/SQL Procedures](#common-built-in-plsql-procedures)
+  - [3-Creating Functions](#3-creating-functions)
+    - [Privilege to run fuctions;](#privilege-to-run-fuctions)
+    - [Key section of a function:](#key-section-of-a-function)
+    - [Sample functions return number value:](#sample-functions-return-number-value)
+  - [4-Creating Procedure](#4-creating-procedure)
+    - [Privileges needed for PL/SQL stored procedures](#privileges-needed-for-plsql-stored-procedures)
+    - [Anonymous Block Procedure](#anonymous-block-procedure)
+    - [Stored Procedure](#stored-procedure)
 
 ## 1-Built-in Functions
 
@@ -222,13 +240,13 @@ ORDER BY a.department_id;
 - To create a procedure, you need the appropriate system privileges, and to run it, you need execute privileges.
 - Procedures are called from PL/SQL blocks or using commands like EXEC or CALL in tools like SQL Developer.
 
-Privileges needed for Oracle PL/SQL stored procedures:
+### Privileges needed for PL/SQL stored procedures
 
 - **Create Procedure**: Needed to create procedures in your own schema.
 - **Create Any Procedure**: Needed to create or replace procedures in other schemas.
 - **Execute**: Needed to run (execute) procedures.
 
-**Anonymous Block Procedure**:
+### Anonymous Block Procedure
 
 Not stored in the database, run on the fly.
 Basic structure:
@@ -277,7 +295,7 @@ FROM
 
 ```
 
-**Stored Procedure**:
+### Stored Procedure
 
 Stored permanently in the database.
 Basic syntax:
