@@ -215,3 +215,106 @@ ORDER BY a.department_id;
 
 ```
 
+## 4-Creating Procedure
+
+- A stored procedure is a named set of SQL and PL/SQL statements stored in the database that you can call repeatedly. Unlike functions, procedures don’t return a value directly but can accept input and output parameters.
+- Procedures help modularize your database code and can be stored individually or grouped in packages.
+- To create a procedure, you need the appropriate system privileges, and to run it, you need execute privileges.
+- Procedures are called from PL/SQL blocks or using commands like EXEC or CALL in tools like SQL Developer.
+
+Privileges needed for Oracle PL/SQL stored procedures:
+
+- **Create Procedure**: Needed to create procedures in your own schema.
+- **Create Any Procedure**: Needed to create or replace procedures in other schemas.
+- **Execute**: Needed to run (execute) procedures.
+
+**Anonymous Block Procedure**:
+
+Not stored in the database, run on the fly.
+Basic structure:
+
+```sql
+DECLARE
+  -- optional variable declarations
+BEGIN
+  -- PL/SQL statements
+END;
+```
+
+**Example:**:
+```sql
+
+CREATE TABLE cnt_table_record (
+    table_name VARCHAR(20), 
+    total_cnt number
+);
+/
+
+DECLARE
+    source_table VARCHAR(20) := 'sh.costs';
+    cnt_table    VARCHAR(20) := 'cnt_table_record';
+    sql_script   VARCHAR(1000);
+BEGIN
+    sql_script := 'insert into '
+                  || cnt_table
+                  || ' select '
+                  || chr(39)
+                  || source_table
+                  || chr(39)
+                  || ','
+                  || ' count(*) from '
+                  || source_table;
+
+    EXECUTE IMMEDIATE sql_script;
+    COMMIT;
+END;
+/
+
+SELECT
+    *
+FROM
+    cnt_table_record;
+
+```
+
+**Stored Procedure**:
+
+Stored permanently in the database.
+Basic syntax:
+
+```sql
+CREATE OR REPLACE PROCEDURE procedure_name (param1 IN datatype, param2 OUT datatype) IS
+  -- optional variable declarations
+BEGIN
+  -- procedure logic
+END;
+```
+
+**Example:**
+```sql
+CREATE OR REPLACE PROCEDURE pro_cnt_table_record (
+    source_table IN VARCHAR,
+    cnt_table    IN VARCHAR
+) IS
+    v_sql_script VARCHAR(1000);
+BEGIN
+    v_sql_script := 'insert into '
+                    || cnt_table
+                    || ' select '
+                    || chr(39)
+                    || source_table
+                    || chr(39)
+                    || ','
+                    || ' count(*) from '
+                    || source_table;
+
+    EXECUTE IMMEDIATE v_sql_script;
+    COMMIT;
+END;
+/
+
+EXECUTE pro_cnt_table_record('dept', 'cnt_table_record');
+/
+
+SELECT * FROM cnt_table_record;
+```
