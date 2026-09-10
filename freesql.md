@@ -1,0 +1,7 @@
+Hostname: db.freesql.com
+Port: 1521
+Service Name: 19c_fy05s
+Username: LYPONLEU116_SCHEMA_I8KK0
+password: 0kPB3JNV9Q37W7EFKTZ#RR3PPMZTF6
+
+sql 'LYPONLEU116_SCHEMA_I8KK0/"0kPB3JNV9Q37W7EFKTZ#RR3PPMZTF6"@//db.freesql.com:1521/19c_fy05s'
