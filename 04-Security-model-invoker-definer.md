@@ -1,5 +1,17 @@
 # Security Model in PL/SQL
 
+- [Security Model in PL/SQL](#security-model-in-plsql)
+  - [1-Invoker Rights, Definer Rights](#1-invoker-rights-definer-rights)
+    - [Using AUTHID to define invoker rights or definer right in procedure](#using-authid-to-define-invoker-rights-or-definer-right-in-procedure)
+    - [Role in PL/SQL procedure](#role-in-plsql-procedure)
+  - [2-PL/SQL Block and Scope](#2-plsql-block-and-scope)
+    - [PL/SQL Block](#plsql-block)
+    - [Nested Block](#nested-block)
+    - [Labeled Block](#labeled-block)
+    - [Definition of Scope](#definition-of-scope)
+
+---
+
 The secuirty model for running PL/SQL procedure can be broken down into 2 categories: `invoker rights and definer rights`.
 
 ## 1-Invoker Rights, Definer Rights
@@ -72,6 +84,7 @@ Example:
   - user B create a procedure P with definer right with code select on table TAB1, then grant execute on procedure P to user A.
   - user A cann't execute P because insuffic privileges on table TAB1. Then need to grant select on TAB1 directly to user A to be able to execute P(because privileges under role of user A are disabled with definer right in procedure)
 
+---
 ## 2-PL/SQL Block and Scope
 
 - A PL/SQL block is a self-contained unit of code, typically between the keywords BEGIN and END, and can be anonymous or named (like in procedures and functions).
