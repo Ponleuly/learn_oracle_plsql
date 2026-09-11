@@ -9,6 +9,7 @@
     - [Nested Block](#nested-block)
     - [Labeled Block](#labeled-block)
     - [Definition of Scope](#definition-of-scope)
+  - [Reference learn more](#reference-learn-more)
 
 ---
 
@@ -334,3 +335,7 @@ END;
 
 `Benefits of Exception Handling in an Inner Block:`
 Using an EXCEPTION section inside an inner block allows you to handle a local error without stopping the entire outer block.
+
+## Reference learn more
+
+https://docs.oracle.com/en/database/oracle/oracle-database/19/lnpls/block.html
