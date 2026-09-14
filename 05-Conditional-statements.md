@@ -1,6 +1,6 @@
 # Conditional Statements
 - [Conditional Statements](#conditional-statements)
-	- [**1-FOR LOOP**](#1-for-loop)
+	- [**1-FOR Loop**](#1-for-loop)
 		- [**What is For Loop?**](#what-is-for-loop)
 		- [**BASIC For Loop**](#basic-for-loop)
 		- [**REVERSE with For Loop**](#reverse-with-for-loop)
@@ -9,10 +9,15 @@
 		- [**GOTO with For Loop**](#goto-with-for-loop)
 		- [**RETURN with For Loop**](#return-with-for-loop)
 		- [**CURSOR with For Loop**](#cursor-with-for-loop)
+	- [**2-WHILE Loop**](#2-while-loop)
+		- [**What is While loop?**](#what-is-while-loop)
+		- [**Bolean expression in while loop**](#bolean-expression-in-while-loop)
+		- [**EXIT with While loop**](#exit-with-while-loop)
+		- [**LABEL with While loop**](#label-with-while-loop)
+		- [**EXPLICIT CURSOR with While loop**](#explicit-cursor-with-while-loop)
 
 
-## **1-FOR LOOP**
-
+## **1-FOR Loop**
 ### **What is For Loop?**
 For loops in PL/SQL iterate through a sequence of integers or through rows of a query result set, making them essential for procedural programming. 
 
@@ -26,6 +31,9 @@ FOR index IN [REVERSE] lower_bound..upper_bound LOOP
    -- statements to execute
 END LOOP;
 ```
+
+![for-loop-syntax](slide/for_loop.png)
+
 ### **BASIC For Loop**
 ```sql
 DECLARE 
@@ -229,6 +237,153 @@ END;
 
 -- output
 Exmployees firstname is : Adam , Dept id: 50
+```
+
+---
+
+## **2-WHILE Loop**
+
+### **What is While loop?**
+
+While loop is used to repeatly execute block of codes as long as the a specific bolean condition is true, by checking the condition(`run zero or more times`) at the start of each interations.
+
+- Use `EXIT` statements inside the loop to leave the loop based on additional conditions.
+- `LABEL` can be used to control flow and in nested loop is allowing to exit outer loops from the inner loops.
+- While loops can work with `EXPLICIT CURSOR` to process query result row by row.
+
+**Syntax:**
+```sql
+<<label>> 
+WHILE condition LOOP
+   -- statements to execute
+END LOOP <<label>>;
+```
+
+![while-loop-syntax](slide/while_loop.png)
+
+![while-loop-stytax-1](slide/while_loop_1.png)
+
+**While loop explain**
+
+![while-loop-explain](slide/while_loop_explain.png)
+
+### **Bolean expression in while loop**
+
+```sql
+DECLARE 
+	count_num NUMBER := 1;
+BEGIN
+	WHILE count_num < 5 LOOP 
+		dbms_output.put_line('Loop number is: ' || count_num || ' , squared is: ' || count_num**2);
+		count_num := count_num +1;
+	END LOOP;
+END;
+
+-- output
+Loop number is: 1 , squared is: 1
+Loop number is: 2 , squared is: 4
+Loop number is: 3 , squared is: 9
+Loop number is: 4 , squared is: 16
+```
+
+### **EXIT with While loop**
+```sql
+DECLARE 
+	count_num NUMBER := 1;
+BEGIN
+	WHILE count_num < 5 LOOP 
+		dbms_output.put_line('Loop number is: ' || count_num || ' , squared is: ' || count_num**2);
+		count_num := count_num +1;
+
+		IF mod(count_num, 2) = 0 THEN 
+			EXIT;
+		END IF;
+	END LOOP;
+		dbms_output.put_line('After loop exists');
+END;
+-- output
+Loop number is: 1 , squared is: 1
+After loop exists
+```
+
+### **LABEL with While loop**
+
+```sql
+DECLARE 
+	int_sum NUMBER := 0;
+	in_loop NUMBER :=0;
+	out_loop NUMBER :=0;
+BEGIN
+	<<outer_loop>>
+	WHILE out_loop < 10 LOOP 	
+		out_loop := out_loop + 1;	
+
+		<<inner_loop>>
+		WHILE in_loop < 50 LOOP 
+
+			IF int_sum > 50 THEN 
+				EXIT outer_loop;
+			END IF;
+		
+			int_sum := int_sum + in_loop*out_loop;
+			in_loop := in_loop + 1;
+		
+		END LOOP inner_loop;
+		
+	END LOOP outer_loop;
+		
+	dbms_output.put_line('Sum = ' || int_sum);
+END;
+
+-- output 
+Sum = 55
+```
+
+### **EXPLICIT CURSOR with While loop**
+```sql
+DECLARE
+    -- Declare an explicit cursor
+    CURSOR emp_cursor IS
+        SELECT employee_id, last_name
+        FROM employees
+        WHERE last_name = 'Grant'
+        ORDER BY employee_id;
+
+    -- Variables that receive the fetched values
+    v_employee_id employees.employee_id%TYPE;
+    v_last_name   employees.last_name%TYPE;
+BEGIN
+    -- 1. Open the cursor
+    OPEN emp_cursor;
+	
+
+    -- 2. Fetch the first row
+    FETCH emp_cursor
+    INTO v_employee_id, v_last_name;
+
+    -- 3. Continue while the previous FETCH found a row
+    WHILE emp_cursor%FOUND LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            v_employee_id || ' - ' || v_last_name
+        );
+
+        -- 4. Fetch the next row
+        FETCH emp_cursor
+        INTO v_employee_id, v_last_name;
+    END LOOP;
+        
+    DBMS_OUTPUT.PUT_LINE(
+           'Cursor found: ' || emp_cursor%rowcount
+        );
+    
+    -- 5. Close the cursor
+    CLOSE emp_cursor;
+END;
+
+-- output
+178 - Grant
+199 - Grant
+Cursor found: 2
 ```
 
 ---
