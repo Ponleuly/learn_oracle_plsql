@@ -19,6 +19,12 @@
 		- [**What is Loop that use LOOP?**](#what-is-loop-that-use-loop)
 		- [**IF-EXIT in Loop**](#if-exit-in-loop)
 		- [**EXIT WHEN in Loop**](#exit-when-in-loop)
+	- [**3-IF Statements**](#3-if-statements)
+		- [**What is IF statements?**](#what-is-if-statements)
+		- [**IF - a single condition**](#if---a-single-condition)
+		- [**IF ELSE - an alternative condition**](#if-else---an-alternative-condition)
+		- [**IF ELSEIF ELSE - multiple alternatives condition**](#if-elseif-else---multiple-alternatives-condition)
+		- [**Example:**](#example)
 
 
 ## **1-FOR Loop**
@@ -467,4 +473,75 @@ Loop count is: 2 , squared is: 4
 Loop count is: 3 , squared is: 9
 Loop count is: 4 , squared is: 16
 Done looping
+```
+
+---
+
+## **3-IF Statements**
+
+### **What is IF statements?**
+- The IF statement controls program flow by executing code blocks based on boolean conditions/expressions(TRUE/FALES).
+- PL/SQL supports IF, ELSIF, and ELSE branches to handle multiple alternative conditions, but only one branch executes.
+- Every IF statement starts with IF and ends with END IF, with boolean expressions determining which code runs.
+
+**Syntax:**
+
+```sql
+-- IF
+IF bolean_expression THEN
+	-- statements;
+END IF;
+
+-- IF ELSE
+IF bolean_expression THEN
+	-- statements;
+ ELSE 
+	-- statements;
+END IF;
+
+-- IF ELSEIF
+IF bolean_expression_1 THEN
+	-- statements;
+ ELSIF bolean_expression_2 THEN
+	-- statements;
+ ELSE 
+	-- statements;
+END IF;
+```
+
+
+![if-syntax](slide/ifelse_syntax.png)
+
+**If else explaintion:**
+
+![if-else-explain](slide/ifelse.png)
+
+### **IF - a single condition**
+
+![if-condition](slide/ifelse_1.png)
+
+### **IF ELSE - an alternative condition**
+
+![if-else-condition](slide/ifelse_2.png)
+
+### **IF ELSEIF ELSE - multiple alternatives condition**
+
+![if-elseif-else-condition](slide/ifelse_3.png)
+
+### **Example:**
+```sql
+DECLARE 
+	day_of_work varchar2(50);
+
+BEGIN
+	SELECT to_char(sysdate, 'fmDay') INTO day_of_work FROM dual;
+	
+	IF day_of_work = 'Sunday' THEN 
+		dbms_output.put_line('Weekend break day.');
+	ELSIF day_of_work = 'Saturday' THEN 
+		dbms_output.put_line('Weekend work day.');
+	ELSE 
+		dbms_output.put_line('Work day.');
+	END IF;
+END;
 ```
