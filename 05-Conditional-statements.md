@@ -19,11 +19,11 @@
 		- [**What is Loop that use LOOP?**](#what-is-loop-that-use-loop)
 		- [**IF-EXIT in Loop**](#if-exit-in-loop)
 		- [**EXIT WHEN in Loop**](#exit-when-in-loop)
-	- [**3-IF Statements**](#3-if-statements)
+	- [**4-IF Statements**](#4-if-statements)
 		- [**What is IF statements?**](#what-is-if-statements)
 		- [**IF - a single condition**](#if---a-single-condition)
 		- [**IF ELSE - an alternative condition**](#if-else---an-alternative-condition)
-		- [**IF ELSEIF ELSE - multiple alternatives condition**](#if-elseif-else---multiple-alternatives-condition)
+		- [**IF ELSIF ELSE - multiple alternatives condition**](#if-elsif-else---multiple-alternatives-condition)
 		- [**Example:**](#example)
 
 
@@ -477,7 +477,7 @@ Done looping
 
 ---
 
-## **3-IF Statements**
+## **4-IF Statements**
 
 ### **What is IF statements?**
 - The IF statement controls program flow by executing code blocks based on boolean conditions/expressions(TRUE/FALES).
@@ -524,9 +524,9 @@ END IF;
 
 ![if-else-condition](slide/ifelse_2.png)
 
-### **IF ELSEIF ELSE - multiple alternatives condition**
+### **IF ELSIF ELSE - multiple alternatives condition**
 
-![if-elseif-else-condition](slide/ifelse_3.png)
+![if-elsif-else-condition](slide/ifelse_3.png)
 
 ### **Example:**
 ```sql
