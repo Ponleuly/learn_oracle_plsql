@@ -15,6 +15,10 @@
 		- [**EXIT with While loop**](#exit-with-while-loop)
 		- [**LABEL with While loop**](#label-with-while-loop)
 		- [**EXPLICIT CURSOR with While loop**](#explicit-cursor-with-while-loop)
+	- [**3-LOOP**](#3-loop)
+		- [**What is Loop that use LOOP?**](#what-is-loop-that-use-loop)
+		- [**IF-EXIT in Loop**](#if-exit-in-loop)
+		- [**EXIT WHEN in Loop**](#exit-when-in-loop)
 
 
 ## **1-FOR Loop**
@@ -388,3 +392,79 @@ Cursor found: 2
 
 ---
 
+## **3-LOOP**
+
+### **What is Loop that use LOOP?**
+- A PL/SQL loop with the LOOP keyword run a block of PL/SQL
+code and terminates with END LOOP.
+- The simplest loop structure in PL/SQL
+- Always `run at least one`
+- Evaluates a condition inside the body of code block to exit the loop, then need to have IF statment to know when to end the loop.
+- Loop is terminated with `EXIT, EXIT WHEN, and GOTO`.
+- Execution order of code inside loop can be alterd by GOTO and CONTINUE.
+  
+**Syntax:**
+
+```sql
+<<label>>
+LOOP
+	--statements
+END LOOP <<label>>;
+```
+
+![loop](slide/loop.png)
+
+**Loop explain:**
+
+![loop-explain](slide/loop_1.png)
+
+**Loop exit conditions:**
+
+![loop-exit-condition](slide/loop_2.png)
+
+### **IF-EXIT in Loop**
+
+```sql
+DECLARE 
+	count_num NUMBER := 1;
+BEGIN
+	LOOP
+		IF count_num = 5 THEN 
+			EXIT;
+		END IF;
+		dbms_output.put_line('Loop count is: ' || count_num || ' , squared is: ' || count_num**2);
+		count_num := count_num +1;
+	END LOOP;
+
+END;
+ 
+-- output
+Loop count is: 1 , squared is: 1
+Loop count is: 2 , squared is: 4
+Loop count is: 3 , squared is: 9
+Loop count is: 4 , squared is: 16
+
+```
+
+### **EXIT WHEN in Loop**
+
+```sql
+DECLARE 
+	count_num NUMBER := 1;
+BEGIN
+	LOOP
+		EXIT WHEN count_num = 5;
+		dbms_output.put_line('Loop count is: ' || count_num || ' , squared is: ' || count_num**2);
+		count_num := count_num +1;
+	END LOOP;
+	
+	dbms_output.put_line('Done looping');
+END;
+
+-- output
+Loop count is: 1 , squared is: 1
+Loop count is: 2 , squared is: 4
+Loop count is: 3 , squared is: 9
+Loop count is: 4 , squared is: 16
+Done looping
+```
