@@ -1,5 +1,19 @@
 # Declaration Variables and Curosurs
 
+- [Declaration Variables and Curosurs](#declaration-variables-and-curosurs)
+  - [1-Declaring Variables](#1-declaring-variables)
+    - [Declaration section](#declaration-section)
+    - [Assigning Default Values](#assigning-default-values)
+    - [Declaring Constants](#declaring-constants)
+    - [Declaratio with %TYPE](#declaratio-with-type)
+    - [Declaratio with %ROWTYPE](#declaratio-with-rowtype)
+  - [2-Declaring Cursors](#2-declaring-cursors)
+    - [**What is a Cursor?**](#what-is-a-cursor)
+    - [**Explicit cursor**](#explicit-cursor)
+      - [Explicit Cursor with FOR LOOP](#explicit-cursor-with-for-loop)
+      - [Explicit Cursor with FETCH](#explicit-cursor-with-fetch)
+    - [**Implicit cursor**](#implicit-cursor)
+
 ## 1-Declaring Variables
 ### Declaration section
 Declaration variables section can begin in some ways:
@@ -140,18 +154,13 @@ begin
 end;
 ```
 
-**What is a Cursor?**
+### **What is a Cursor?**
 
 **Cursor**: is a pointer to a private SQL area that stores information about processing a specific SELECT or DML statement.
 We can declare cursors either in the declaration section or directly in the code section within BEGIN...END.
-
-**2 types of cursur:**
-
-- **Explicit cursor** is a session cursor that you construct and manage. You must declare and define an explicit cursor, giving it a name and associating it with a query (typically, the query returns multiple rows). Then you can process the query result set in either of these ways:
-  - Open the explicit cursor (with the OPEN statement), fetch rows from the result set (with the FETCH statement), and close the explicit cursor (with the CLOSE statement).
-  - Use the explicit cursor in a cursor FOR LOOP statement
-  
-Declaring an emplicit cursor:
+There are 2 types of cursurs: `explicit cursor, and Implicit cursor`.
+ 
+Example of declaring cursor:
 ```sql
 -- Declaring cursor in declaraction section
 DECLARE
@@ -179,10 +188,76 @@ BEGIN
         dbms_output.put_line('Employee last name: ' || v_last_name);
     END LOOP;
 END;
+```
+
+### **Explicit cursor** 
+Explicit cursor is a session cursor that you construct and manage. You must declare and define an explicit cursor, giving it a name and associating it with a query (typically, the query returns multiple rows). Then you can process the query result set in either of these ways:
+  - Open the explicit cursor (with the OPEN statement), fetch rows from the result set (with the FETCH statement), and close the explicit cursor (with the CLOSE statement).
+  - Use the explicit cursor in a cursor FOR LOOP statement
+  
+#### Explicit Cursor with FOR LOOP
+With a cursor FOR LOOP, Oracle automatically performs OPEN, FETCH, and CLOSE. Therefore, we do not write FETCH manually.
+```sql
+DECLARE
+    -- Explicit cursor
+    CURSOR emp_cursor IS
+        SELECT employee_id, last_name
+        FROM employees
+        WHERE department_id = 50
+        ORDER BY employee_id;
+BEGIN
+    -- Oracle automatically opens and fetches from the cursor
+    FOR emp_record IN emp_cursor LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            emp_record.employee_id || ' - ' ||
+            emp_record.last_name
+        );
+    END LOOP;
+
+    -- Oracle automatically closes the cursor
+END;
+/
 
 ```
 
-- **Implicit cursor** is a session cursor that is constructed and managed by PL/SQL. PL/SQL opens an implicit cursor every time you run a SELECT or DML statement. You cannot control an implicit cursor, but you can get information from its attributes by using built-in SQL% variables.
+#### Explicit Cursor with FETCH
+Use `FETCH` when you manually control an explicit cursor or cursor variable and want to `retrieve its result one row at a time`.
+```sql
+DECLARE
+    CURSOR emp_cursor IS
+        SELECT employee_id, last_name
+        FROM employees WHERE employee_id < 110 ;
+
+    v_emp emp_cursor%ROWTYPE;
+BEGIN
+    OPEN emp_cursor;
+
+    LOOP
+        FETCH emp_cursor INTO v_emp;
+        EXIT WHEN emp_cursor%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE(
+            v_emp.employee_id || ' - ' || v_emp.last_name
+        );
+    END LOOP;
+
+    CLOSE emp_cursor;
+END;
+-- output
+100 - King
+101 - Yang
+102 - Garcia
+103 - James
+104 - Miller
+105 - Williams
+106 - Jackson
+107 - Nguyen
+108 - Gruenberg
+109 - Faviet
+```
+
+### **Implicit cursor** 
+Implicit cursor is a session cursor that is constructed and managed by PL/SQL. PL/SQL opens an implicit cursor every time you run a SELECT or DML statement. You cannot control an implicit cursor, but you can get information from its attributes by using built-in SQL% variables.
 
 Using SQL% Built-in variables:
 ```sql
