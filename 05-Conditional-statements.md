@@ -31,7 +31,7 @@
 		- [**Continue when, exit when**](#continue-when-exit-when)
 		- [**GOTO**](#goto)
 		- [**RETURN**](#return)
-	- [**5-New Feature PL/SQL in FOR LOOP**](#5-new-feature-plsql-in-for-loop)
+	- [**6-New Feature PL/SQL in FOR LOOP**](#6-new-feature-plsql-in-for-loop)
 		- [**BY Clause**](#by-clause)
 		- [**Expressions directly**](#expressions-directly)
 		- [**WHEN Clause**](#when-clause)
@@ -584,7 +584,7 @@ END;
 
 ---
 
-## **5-New Feature PL/SQL in FOR LOOP**
+## **6-New Feature PL/SQL in FOR LOOP**
 
 ### **BY Clause**
 Using the BY clause to specify a custom increment (e.g., iterating odd numbers between 1 and 10):
