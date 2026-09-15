@@ -25,6 +25,12 @@
 		- [**IF ELSE - an alternative condition**](#if-else---an-alternative-condition)
 		- [**IF ELSIF ELSE - multiple alternatives condition**](#if-elsif-else---multiple-alternatives-condition)
 		- [**Example:**](#example)
+	- [**5-CONTINUE-EXIT-GOTO-RETURN**](#5-continue-exit-goto-return)
+		- [**CONTINUE**](#continue)
+		- [**EXIT**](#exit)
+		- [**Continue when, exit when**](#continue-when-exit-when)
+		- [**GOTO**](#goto)
+		- [**RETURN**](#return)
 
 
 ## **1-FOR Loop**
@@ -545,3 +551,29 @@ BEGIN
 	END IF;
 END;
 ```
+
+---
+
+## **5-CONTINUE-EXIT-GOTO-RETURN**
+
+![continue-exit-goto-return](slide/continue-exit.png)
+
+### **CONTINUE**
+
+![continue](slide/continue.png)
+
+### **EXIT**
+
+![exit](slide/exit.png
+)
+### **Continue when, exit when**
+
+![continue-when-exit-when](slide/continue-exit-1.png)
+
+### **GOTO**
+
+![goto](slide/goto.png)
+
+### **RETURN**
+
+![return](slide/return.png)
