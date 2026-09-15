@@ -31,6 +31,10 @@
 		- [**Continue when, exit when**](#continue-when-exit-when)
 		- [**GOTO**](#goto)
 		- [**RETURN**](#return)
+	- [**5-New Feature PL/SQL in FOR LOOP**](#5-new-feature-plsql-in-for-loop)
+		- [**BY Clause**](#by-clause)
+		- [**Expressions directly**](#expressions-directly)
+		- [**WHEN Clause**](#when-clause)
 
 
 ## **1-FOR Loop**
@@ -577,3 +581,80 @@ END;
 ### **RETURN**
 
 ![return](slide/return.png)
+
+---
+
+## **5-New Feature PL/SQL in FOR LOOP**
+
+### **BY Clause**
+Using the BY clause to specify a custom increment (e.g., iterating odd numbers between 1 and 10):
+
+```sql
+-- old
+BEGIN
+	FOR i IN 1..5 LOOP
+		dbms_output.put_line(i*2-1);
+	END LOOP;
+END;
+-- output
+1
+3
+5
+7
+9
+
+-- new
+BEGIN 
+	FOR i IN 1..10 BY 2 LOOP -- using BY
+	  DBMS_OUTPUT.PUT_LINE(i);
+	END LOOP;
+END;
+-- output
+1
+3
+5
+7
+9
+```
+### **Expressions directly**
+Using expressions directly in the loop range without declaring variables (e.g., powers of two):
+
+```sql
+BEGIN 
+	FOR i IN (2 ** 1)..(2 ** 5) LOOP
+	  DBMS_OUTPUT.PUT_LINE(i);
+	END LOOP;
+END;
+-- output
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+
+```
+
+### **WHEN Clause**
+Using the WHEN clause to conditionally iterate (e.g., only numbers divisible by 3):
+
+```sql
+BEGIN 
+	FOR i IN 1..10 WHEN MOD(i, 3) = 0 LOOP
+	  DBMS_OUTPUT.PUT_LINE(i);
+	END LOOP;
+END;
+-- output
+3
+6
+9
+```
