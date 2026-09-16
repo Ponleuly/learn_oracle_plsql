@@ -65,7 +65,7 @@ END;
 Employee: King
 
 ```
-- Using `bulk collect` for returning multples rows.
+- Using `bulk collect into` for returning multples rows.
 
 Example:
 ```sql
@@ -109,7 +109,7 @@ Total employees last name found: 45
 - `SQL%ROWCOUNT`: show number of affected rows by the DML.
 - `SQL%NOTFOUND`: show bolean value(TRUE/FALSE) of rows that met the where clause were not found.
 - `SQL%FOUND`: show bolean value(TRUE/FALSE) of rows were found that met the where clause.
-- `% variable scope`: to save the value in declared variavle, until the next DML statement
+- `% variable scope`: always reflect the status of the last SQL statement run, but if want to keep their values for later, need to store them in declared variables.
 
 Example:
 ```sql
