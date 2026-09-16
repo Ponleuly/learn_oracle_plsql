@@ -14,10 +14,10 @@
 ### Key features of PL/SQL with Oracle SQL
 
 - PL/SQL intergrated with Oracle SQL feature such as `cursor`, `for loop`, `if-then`, and so on.
-- Using `select statements`.
+- Using `select statements` in PL/SQL.
 - Using `DML(Data Manipulation Language)`: insert, update, delete, merge, and so on.
 - Can `run DML` statements `without changing syntax` inside PL/SQL
-- Process `select results` in useful ways like put into PL/SQL variable using `INTO` for single row or `BULK COLLECT` for multiple rows.
+- Process `select results` in useful ways like put into PL/SQL variable using `INTO` for single row or `BULK COLLECT INTO` for multiple rows.
 - Use `DML built-in variable` such as: SQL%ROWCOUNT, SQL%NOTFOUND, SQL%FOUND, SQL%ROWCOUNT, % vairable scope, and so on.  
 
 ---
