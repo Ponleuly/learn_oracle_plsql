@@ -13,7 +13,7 @@
       - [Execute DDL Dynamically](#execute-ddl-dynamically)
       - [Dynamic DML with Bind Variables](#dynamic-dml-with-bind-variables)
       - [Dynamic Single-Row Query](#dynamic-single-row-query)
-  - [Static SQL Versus Dynamic SQL](#static-sql-versus-dynamic-sql)
+  - [3-Static SQL Versus Dynamic SQL](#3-static-sql-versus-dynamic-sql)
 
 
 ## 1-Using SELECT INTO and SQL%
@@ -300,8 +300,8 @@ BEGIN
 END;
 /
 ```
-
-## Static SQL Versus Dynamic SQL
+---
+## 3-Static SQL Versus Dynamic SQL
 
 `Static SQL`: The SQL structure is known when the PL/SQL block is compiled.
 ```sql
