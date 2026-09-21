@@ -14,7 +14,7 @@
 - Loops
 - Outout
 - Error exception
-- Get reselt
+- Get result
 
 --- 
 
